@@ -1,0 +1,15 @@
+﻿<Application x:Class="Baev_Autoservice.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Baev_Autoservice"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Width" Value="175"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Background" Value="#FFFF9C1A"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+    </Application.Resources>
+</Application>
