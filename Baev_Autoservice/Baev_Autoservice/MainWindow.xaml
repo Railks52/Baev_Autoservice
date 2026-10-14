@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Baev_Autoservice"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontFamily="Tw Cen MT" Icon="Resources/service_logo.ico">
+        Title="Услуги автосервиса" Height="450" Width="800" FontFamily="Tw Cen MT" Icon="Resources/service_logo.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>

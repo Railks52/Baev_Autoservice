@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="759493c4b49e4910a381b3e26643fe39" Name="Diagram1" ZoomLevel="79">
+        <EntityTypeShape EntityType="BaevAutoserviceModel.AttachedProduct" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.Client" Width="1.5" PointX="12.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.ClientService" Width="1.5" PointX="14.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.DocumentByService" Width="1.5" PointX="17" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.Gender" Width="1.5" PointX="10.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.Manufacturer" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.Product" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.ProductPhoto" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.ProductSale" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.Service" Width="1.5" PointX="12.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.ServicePhoto" Width="1.5" PointX="10" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaevAutoserviceModel.Tag" Width="1.5" PointX="14.75" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_AttachedProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_Client_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_ClientService_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_ClientService_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_DocumentByService_ClientService" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_ProductSale_ClientService" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_Product_Manufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_ProductPhoto_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_ProductSale_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.FK_ServicePhoto_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="BaevAutoserviceModel.TagOfClient" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
