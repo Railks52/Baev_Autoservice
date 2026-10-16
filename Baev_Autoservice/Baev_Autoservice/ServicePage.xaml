@@ -9,7 +9,41 @@
       Title="ServicePage">
 
     <Grid>
-        <ListView Name="ServiceListView">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock Text="Введите название для поиска" TextAlignment="Right"
+                           Width="300" FontSize="20"></TextBlock>
+                <TextBlock Name="TBoxSearch" DataContextChanged="TBoxSearch_DataContextChanged"
+                           Width="300" FontSize="15"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Выберите название для поиска" TextAlignment="Right"
+                           Width="300" FontSize="20"></TextBlock>
+                <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged"
+                          FontSize="15" Width="200">
+                    <TextBox>Все</TextBox>
+                    <TextBox>от 0 до 5%</TextBox>
+                    <TextBox>от 5 до 15%</TextBox>
+                    <TextBox>от 15 до 30%</TextBox>
+                    <TextBox>от 30 до 70%</TextBox>
+                    <TextBox>от 70 до 100%</TextBox>
+                </ComboBox>
+            </StackPanel>
+        </WrapPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5">
+            <RadioButton Content="По возрастанию стоимости" GroupName="Sort"
+                         Width="300" FontSize="20" Checked="RadioButton_Checked"
+                         Name="RButtonUp"></RadioButton>
+            <RadioButton Content="По убыванию стоимости" GroupName="Sort"
+                         Width="300" FontSize="20" Checked="RadioButton_Checked_1"
+                         Name="RButtonDown"></RadioButton>
+        </StackPanel>
+        <ListView Name="ServiceListView" Grid.Row="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="10">
