@@ -23,6 +23,12 @@ namespace Baev_Autoservice
         public ServicePage()
         {
             InitializeComponent();
+            //добавляем строки
+            // загрузить в список из бд
+            var currentServices=BaevAutoserviceEntities.GetContext().Service.ToList();
+            // связать с нашим листвью
+            ServiceListView.ItemsSource = currentServices;
+            //добавили строки
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
