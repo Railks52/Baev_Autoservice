@@ -30,7 +30,7 @@ namespace Baev_Autoservice
             InitializeComponent();
             //добавляем строки
             // загрузить в список из бд
-            var currentServices=BaevAutoserviceEntities.GetContext().Service.ToList();
+            var currentServices = BaevAutoserviceEntities.GetContext().Service.ToList();
             // связать с нашим листвью
             ServiceListView.ItemsSource = currentServices;
             //добавили строки
@@ -248,6 +248,12 @@ namespace Baev_Autoservice
         private void PageListBox_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
+        }
+
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            // открыть окно записи клиента на выбранную услугу
+            Manager.MainFrame.Navigate(new SignUpPage((sender as Button).DataContext as Service));
         }
     }
 }

@@ -15,14 +15,12 @@ namespace Baev_Autoservice
     
     public partial class BaevAutoserviceEntities : DbContext
     {
-        //добавлено
         private static BaevAutoserviceEntities _context;
 
         public static BaevAutoserviceEntities GetContext()
         {
             if(_context == null )
                 _context = new BaevAutoserviceEntities();
-
             return _context;
         }
         public BaevAutoserviceEntities()

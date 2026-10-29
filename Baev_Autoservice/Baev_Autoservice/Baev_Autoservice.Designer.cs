@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\MyFiles\Учеба\Третий курс\Разработка Программ Модулей\GitHub Baev_Autoservice\Baev_Autoservice\Baev_Autoservice\Baev_Autoservice.edmx" включено. 
+﻿// Создание кода T4 для модели "D:\СТУДЕНТЫ\3 курс\БаевИСП3524\Baev_Autoservice-master\Baev_Autoservice\Baev_Autoservice\Baev_Autoservice.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

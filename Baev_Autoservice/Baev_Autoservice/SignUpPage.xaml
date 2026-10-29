@@ -1,0 +1,69 @@
+﻿<Page x:Class="Baev_Autoservice.SignUpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Baev_Autoservice"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SignUpPage" FontFamily="Tw Cen MT">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Наименование услуги" FontSize="15" Grid.Column="0" Grid.Row="0"
+               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"></TextBlock>
+        <TextBlock Text="Длительность, мин." FontSize="15" Grid.Column="0" Grid.Row="1"
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"></TextBlock>
+        <TextBlock Text="ФИО клиента" FontSize="15" Grid.Column="0" Grid.Row="2"
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"></TextBlock>
+        <TextBlock Text="Дата" FontSize="15" Grid.Column="0" Grid.Row="3"
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"></TextBlock>
+        <TextBlock Text="Время начала:" FontSize="15" Grid.Column="0" Grid.Row="4"
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"></TextBlock>
+
+        <TextBox Name="TBTitle" Grid.Column="1" Grid.Row="0" Height="30"
+                 Text="{Binding Title}" IsEnabled="False" FontSize="20"></TextBox>
+        <TextBox Name="TBDuration" Grid.Column="1" Grid.Row="1" Height="30"
+                 Text="{Binding Duration}" IsEnabled="False" Width="200" FontSize="20"
+                 HorizontalAlignment="Left"></TextBox>
+
+        <ComboBox Grid.Column="1" Grid.Row="2" Height="30" Width="300" FontSize="15"
+                  Name="ComboClient" HorizontalAlignment="Left">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding FirstName}"></Label>
+                        <Label Content="{Binding LastName}"></Label>
+                        <Label Content="{Binding Patronymic}"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <DatePicker Grid.Column="1" Grid.Row="3" Height="30" Width="200" FontSize="20"
+                    Name="StartDate" HorizontalAlignment="Left"></DatePicker>
+
+        <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
+            <TextBox Name="TBStart" Height="30" Width="200" FontSize="20"
+                     TextChanged="TBStart_TextChanged"></TextBox>
+            
+            <TextBlock Text="Время окончания:" FontSize="15" Height="30" Margin="20"></TextBlock>
+            <TextBox Name="TBEnd" Height="30" Width="200" FontSize="20" IsEnabled="False"></TextBox>
+        </StackPanel>
+
+        <Button Name="SaveButton" Content="Сохранить" Grid.Row="5"
+                Grid.Column="0" Grid.ColumnSpan="2" Click="SaveButton_Click"></Button>
+    </Grid>
+</Page>

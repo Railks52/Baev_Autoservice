@@ -41,10 +41,15 @@ namespace Baev_Autoservice
             if (_currentService.Cost == 0)
                 errors.AppendLine("Укажите стоимость услуги");
 
-            if (_currentService.Discount == 0)
-                errors.AppendLine("Укажите скидку");
-            if (String.IsNullOrWhiteSpace(_currentService.Duration))
+            if (_currentService.Duration == 0)
                 errors.AppendLine("Укажите длительность услуги");
+            if (_currentService.Duration > 240)
+                errors.AppendLine("Длительность не может быть больше 240 минут");
+            if (_currentService.Duration < 0)
+                errors.AppendLine("Длительность не может быть меньше 0");
+
+            if (_currentService.Discount < 0 || _currentService.Discount > 100)
+                errors.AppendLine("Укажите скидку от 0 до 100");
 
             if (errors.Length > 0)
             {
