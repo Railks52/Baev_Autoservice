@@ -43,10 +43,8 @@ namespace Baev_Autoservice
 
             if (_currentService.Duration == 0)
                 errors.AppendLine("Укажите длительность услуги");
-            if (_currentService.Duration > 240)
-                errors.AppendLine("Длительность не может быть больше 240 минут");
-            if (_currentService.Duration < 0)
-                errors.AppendLine("Длительность не может быть меньше 0");
+            if (_currentService.Duration > 240 || _currentService.Duration < 0)
+                errors.AppendLine("Длительность не может быть больше 240 минут или меньше 0");
 
             if (_currentService.Discount < 0 || _currentService.Discount > 100)
                 errors.AppendLine("Укажите скидку от 0 до 100");
@@ -57,11 +55,19 @@ namespace Baev_Autoservice
                 return;
             }
 
-            // добавить в контекст текущие значения новой услуги
-            if (_currentService.ID == 0)
-                BaevAutoserviceEntities.GetContext().Service.Add(_currentService);
+            var allServices = BaevAutoserviceEntities.GetContext().Service.ToList();
+            allServices = allServices.Where(p => p.Title == _currentService.Title && p.ID != _currentService.ID).ToList();
 
-            //сохранить изменения если никаких ошибок не получилось при этом
+            if (allServices.Count >0)
+            {
+                MessageBox.Show("Уже существует такая услуга");
+                return;
+            }
+            if (allServices.Count==0)
+            {
+                if (_currentService.ID == 0)
+                    BaevAutoserviceEntities.GetContext().Service.Add(_currentService);
+            }
             try
             {
                 BaevAutoserviceEntities.GetContext().SaveChanges();
@@ -71,6 +77,19 @@ namespace Baev_Autoservice
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                //если не цифры
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
             }
         }
     }

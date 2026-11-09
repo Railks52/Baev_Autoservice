@@ -11,7 +11,9 @@ namespace Baev_Autoservice
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Text.RegularExpressions;
+    using System.Windows.Media;
+
     public partial class Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,7 +34,7 @@ namespace Baev_Autoservice
             get
             { return (int)(Discount * 100); }
             set
-            { Discount = (double)DiscountInt / 100; }
+            { Discount = value / 100.0; }
         }
 
         public string Description { get; set; }
@@ -41,5 +43,38 @@ namespace Baev_Autoservice
         public virtual ICollection<ClientService> ClientService { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServicePhoto> ServicePhoto { get; set; }
+
+        public string OldCost
+        {
+            get
+            {
+                if (Discount > 0)
+                    return Cost.ToString();
+                else
+                    return "";
+            }
+        }
+
+        public string NewCost
+        {
+            get
+            {
+                if (Discount > 0)
+                    return Math.Round(((decimal)Cost - (decimal)Cost * (decimal)Discount), 2).ToString().Replace('.',',');
+                else
+                    return Math.Round((decimal)Cost, 2).ToString().Replace('.',',');
+            }
+        }
+
+        public SolidColorBrush FonStyle
+        {
+            get
+            {
+                if (Discount > 0)
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("LightGreen");
+                else
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("White");
+            }
+        }
     }
 }

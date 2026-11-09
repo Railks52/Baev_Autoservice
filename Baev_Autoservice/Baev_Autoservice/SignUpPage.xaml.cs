@@ -49,6 +49,8 @@ namespace Baev_Autoservice
                 errors.AppendLine("Укажите дату услуги");
             if (TBStart.Text== "")
                 errors.AppendLine("Укажите время начала услуги");
+            if (TBEnd.Text == "")
+                errors.AppendLine("Введите корректное время начала услуги");
             if (errors.Length>0)
             {
                 MessageBox.Show(errors.ToString());
@@ -81,15 +83,18 @@ namespace Baev_Autoservice
             string s = TBStart.Text;
             if (s.Contains(':'))
             {
+                
                 string[] start = s.Split(new char[] { ':' });
                 if (start[0].Length > 0 && start[0].Length <= 2 && start[1].Length == 2
                     && Convert.ToInt32(start[0]) >= 0 && Convert.ToInt32(start[0]) <= 23
-                    && Convert.ToInt32(start[1]) >= 0 && Convert.ToInt32(start[1]) <= 59)
+                    && Convert.ToInt32(start[1]) >= 0 && Convert.ToInt32(start[1]) <= 59
+                    && start.Length==2) 
                 {
-                    int startHour = Convert.ToInt32(start[0].ToString()) * 60;
-                    int startMin = Convert.ToInt32(start[1].ToString());
+                    int startHour = Convert.ToInt32(start[0]) * 60;
+                    int startMin = Convert.ToInt32(start[1]);
                     int sum = startHour + startMin + _currentService.Duration;
-                    int EndHour = sum / 60;
+                    int TotalHours = sum / 60;
+                    int EndHour = TotalHours % 24;
                     int EndMin = sum % 60;
                     if (EndMin == 0)
                         s = EndHour.ToString() + ":" + "00";
@@ -98,8 +103,23 @@ namespace Baev_Autoservice
                     TBEnd.Text = s;
                 }
                 else
+                { 
+                        TBEnd.Text = "";
+                        return;
+                }
+            }
+        }
+
+        private void TBStart_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //проходим по каждому символу которе хочет ввести пользователь
+            foreach(char c in e.Text)
+            {
+                //если не цифра и не двоеточие
+                if(!char.IsDigit(c) && c != ':')
                 {
-                    TBEnd.Text = "";
+                    e.Handled = true;
+                    break;
                 }
             }
         }

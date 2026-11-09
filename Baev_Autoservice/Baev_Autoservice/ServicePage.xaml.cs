@@ -22,7 +22,7 @@ namespace Baev_Autoservice
     {
         int CountRecords;//колво записей в таблице
         int CountPage;//общее колво страниц
-        int CurrentPage;//текущая страница
+        int CurrentPage = 0;//текущая страница
         List<Service> CurrentPageList = new List<Service>();
         List<Service> TableList;
         public ServicePage()
@@ -45,7 +45,7 @@ namespace Baev_Autoservice
             var currentServices = BaevAutoserviceEntities.GetContext().Service.ToList();
             //прописываем фильтрациб по условию задачи
             if (ComboType.SelectedIndex == 0)
-                currentServices = currentServices.Where(p => (p.Discount >= 0 && p.Discount <= 1) || p.Discount == null).ToList();
+                currentServices = currentServices.Where(p => (p.Discount >= 0 && p.Discount <= 1)).ToList();
             if (ComboType.SelectedIndex == 1)
                 currentServices = currentServices.Where(p => (p.Discount >= 0 && p.Discount <= 0.05)).ToList();
             if (ComboType.SelectedIndex == 2)
@@ -185,7 +185,7 @@ namespace Baev_Autoservice
             int min;
             if (selectedPage.HasValue) //проверка на значение не ноль так как может быть ноль
             {
-                if (selectedPage > -0 && selectedPage <= CountPage) 
+                if (selectedPage >= 0 && selectedPage <= CountPage) 
                 {
                     CurrentPage = (int)selectedPage;
                     min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
@@ -224,24 +224,24 @@ namespace Baev_Autoservice
                             Ifupdate = false;
                         break;
                 }
-                if (Ifupdate)//если currentPage не вышел из диапазона то
-                {
-                    PageListBox.Items.Clear();
-                    //удаление старых значений из listbox номеров страниц, нужно чтобы при изменении
-                    //колва записей колво страниц динамически изменялось
-                    for (int i = 1; i <= CountPage; i++)
-                        PageListBox.Items.Add(i);
-                    PageListBox.SelectedIndex = CurrentPage;
+            }
+            if (Ifupdate)//если currentPage не вышел из диапазона то
+            {
+                PageListBox.Items.Clear();
+                //удаление старых значений из listbox номеров страниц, нужно чтобы при изменении
+                //колва записей колво страниц динамически изменялось
+                for (int i = 1; i <= CountPage; i++)
+                    PageListBox.Items.Add(i);
+                PageListBox.SelectedIndex = CurrentPage;
 
-                    //вывод кол-ва записей на странице и общего количества
-                    min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
-                    TBCount.Text = min.ToString();
-                    TBALLRecords.Text = " из " + CountRecords.ToString();
+                //вывод кол-ва записей на странице и общего количества
+                min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
+                TBCount.Text = min.ToString();
+                TBALLRecords.Text = " из " + CountRecords.ToString();
 
-                    ServiceListView.ItemsSource = CurrentPageList;
-                    //обновить отображение списка услуг
-                    ServiceListView.Items.Refresh();
-                }
+                ServiceListView.ItemsSource = CurrentPageList;
+                //обновить отображение списка услуг
+                ServiceListView.Items.Refresh();
             }
         }
 
